@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://db1s0ok4x5twq"]
+
+[ext_resource type="Script" uid="uid://blqryxr2mhksn" path="res://scenes/resources/ItemData.gd" id="1_oxfyp"]
+[ext_resource type="Texture2D" uid="uid://knnrptfhfff4" path="res://icon.svg" id="1_vf70c"]
+
+[resource]
+script = ExtResource("1_oxfyp")
+name = "Деревянный топор"
+icon = ExtResource("1_vf70c")
+tool = 1
+metadata/_custom_type_script = "uid://blqryxr2mhksn"

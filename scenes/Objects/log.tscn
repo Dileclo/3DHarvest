@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://drjl3mflydvqp"]
+
+[ext_resource type="PackedScene" uid="uid://ggs4ud1k5x1d" path="res://scenes/components/collectable_component.tscn" id="1_bck0a"]
+[ext_resource type="Resource" uid="uid://c6sw4iuoxnl8h" path="res://scenes/inventory/items/log.tres" id="2_k1lug"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8i11u"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8i11u"]
+height = 0.88671875
+radius = 0.18701172
+
+[node name="Log" type="Area3D" unique_id=1844903215]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=371143614]
+transform = Transform3D(0.3049528, 0, 0, 0, -1.8029102e-08, 0.27504084, 0, -0.41245776, -1.2022417e-08, 0, 0.12933329, 0)
+mesh = SubResource("CylinderMesh_8i11u")
+
+[node name="CollectableComponent" parent="." unique_id=2086327072 instance=ExtResource("1_bck0a")]
+item = ExtResource("2_k1lug")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectableComponent" unique_id=1880105349]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.13065097, 0)
+shape = SubResource("CylinderShape3D_8i11u")

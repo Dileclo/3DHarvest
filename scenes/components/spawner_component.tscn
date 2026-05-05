@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://qskgfn1q50rn"]
+
+[ext_resource type="Script" uid="uid://bealcho8kipll" path="res://scenes/components/spawner_component.gd" id="1_14mdg"]
+
+[node name="SpawnerComponent" type="Node3D" unique_id=1784026446]
+script = ExtResource("1_14mdg")

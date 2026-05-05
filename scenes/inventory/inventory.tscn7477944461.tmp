@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dlw7ybyeb3578"]
+
+[ext_resource type="PackedScene" uid="uid://cwxrafubse38d" path="res://scenes/inventory/slot.tscn" id="1_msrby"]
+[ext_resource type="Script" uid="uid://uroowfhqyc1j" path="res://scenes/inventory/inventory.gd" id="1_tvok8"]
+[ext_resource type="Script" uid="uid://buitgb3lh8fpg" path="res://scenes/inventory/hotbar.gd" id="3_el5y6"]
+
+[node name="Inventory" type="Control" unique_id=1129337402 node_paths=PackedStringArray("grid_container", "hotbar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tvok8")
+grid_container = NodePath("UI/GridContainer")
+hotbar = NodePath("UI/Hotbar")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=507803127]
+
+[node name="GridContainer" type="GridContainer" parent="UI" unique_id=1556678239]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 4
+
+[node name="Slot" parent="UI/GridContainer" unique_id=1656073998 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot2" parent="UI/GridContainer" unique_id=44808504 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot3" parent="UI/GridContainer" unique_id=1722509533 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot4" parent="UI/GridContainer" unique_id=87286227 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot5" parent="UI/GridContainer" unique_id=1412336215 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot6" parent="UI/GridContainer" unique_id=1464791493 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot7" parent="UI/GridContainer" unique_id=2098713977 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot8" parent="UI/GridContainer" unique_id=865783263 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot9" parent="UI/GridContainer" unique_id=924507854 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot10" parent="UI/GridContainer" unique_id=289138270 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot11" parent="UI/GridContainer" unique_id=1688156683 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot12" parent="UI/GridContainer" unique_id=587490137 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Hotbar" type="HBoxContainer" parent="UI" unique_id=1319096594]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("3_el5y6")
+
+[node name="Slot" parent="UI/Hotbar" unique_id=861399374 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot2" parent="UI/Hotbar" unique_id=946471597 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot3" parent="UI/Hotbar" unique_id=345033926 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[node name="Slot4" parent="UI/Hotbar" unique_id=124103862 instance=ExtResource("1_msrby")]
+layout_mode = 2
+
+[connection signal="equip" from="UI/Hotbar" to="." method="_on_hotbar_equip"]

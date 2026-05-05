@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d16gvja3jxd42"]
+
+[ext_resource type="PackedScene" uid="uid://bbhlbahr840r6" path="res://assets/axe.glb" id="1_8op61"]
+[ext_resource type="PackedScene" uid="uid://ggs4ud1k5x1d" path="res://scenes/components/collectable_component.tscn" id="2_2l4tk"]
+[ext_resource type="Resource" uid="uid://db1s0ok4x5twq" path="res://scenes/inventory/items/axe_wood.tres" id="3_31ev0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_06wul"]
+size = Vector3(0.41796875, 2.3413086, 0.33984375)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=355867658]
+
+[node name="axe" parent="." unique_id=2054043081 instance=ExtResource("1_8op61")]
+
+[node name="CollectableComponent" parent="." unique_id=2086327072 instance=ExtResource("2_2l4tk")]
+item = ExtResource("3_31ev0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectableComponent" unique_id=1316127830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01171875, 0.6706543, 0.0029296875)
+shape = SubResource("BoxShape3D_06wul")
