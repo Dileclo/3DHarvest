@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://q62wfsuhj7rp"]
 
 [ext_resource type="Script" uid="uid://d4nyloq3amk8u" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="ArrayMesh" uid="uid://1w6jh5c24vox" path="res://scenes/meshes/axe_wood.tres" id="2_5gtgg"]
 [ext_resource type="Script" uid="uid://cxcjaqmfov0r0" path="res://scenes/player/state_machine.gd" id="2_dovo2"]
 [ext_resource type="Script" uid="uid://c7cgh70w1y8i8" path="res://scenes/player/idle_state.gd" id="3_lvxji"]
 [ext_resource type="Script" uid="uid://dl52ebr0vtapo" path="res://scenes/player/walk_state.gd" id="4_p47bc"]
@@ -11,89 +12,29 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x7p2l"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_8afob"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_75vfm"]
-radius = 0.2
+[sub_resource type="SphereShape3D" id="SphereShape3D_qek5x"]
+radius = 0.1
 
 [sub_resource type="Animation" id="Animation_8afob"]
 resource_name = "Chop"
 length = 0.36666667
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Neck/Camera3D/MeshInstance3D:position")
+tracks/0/path = NodePath("StateMachine/Chopping")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.16666667),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.42676353, -0.36676025, -0.53908086)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Neck/Camera3D/MeshInstance3D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.09632849, 0.13554224, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Neck/Camera3D/MeshInstance3D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.97654665, 0, 0), Vector3(-0.09477142, 0, 0), Vector3(0.97654665, 0, 0)]
+"values": [{
+"args": [],
+"method": &"hit"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Neck/Camera3D/MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.42676353, -0.36676025, -0.53908086)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Neck/Camera3D/MeshInstance3D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.09632849, 0.13554224, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Neck/Camera3D/MeshInstance3D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.97654665, 0, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
 _data = {
@@ -101,10 +42,13 @@ _data = {
 &"RESET": SubResource("Animation_dovo2")
 }
 
-[node name="Player" type="CharacterBody3D" unique_id=908429481]
+[node name="Player" type="CharacterBody3D" unique_id=908429481 node_paths=PackedStringArray("inv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 3
 script = ExtResource("1_8afob")
+inv = NodePath("Inventory")
+current_tool = 1
+MAX_STAMINA = 150.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2022746130]
 shape = SubResource("CapsuleShape3D_x7p2l")
@@ -114,19 +58,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7526938, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Neck" unique_id=1474157221]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Neck/Camera3D" unique_id=1119144624]
-transform = Transform3D(0.09632849, 0, 0, 0, 0.07588837, -0.8285688, 0, 0.11230607, 0.55988723, 0.42676353, -0.36676025, -0.53908086)
-mesh = SubResource("BoxMesh_8afob")
-
-[node name="Area3D" type="Area3D" parent="Neck/Camera3D/MeshInstance3D" unique_id=1602536078]
-transform = Transform3D(10.381145, 0, 0, 0, 4.130721, 6.1129932, 0, -0.8285688, 0.55988723, -4.430294, 4.810382, -0.0020616055)
-collision_layer = 0
+[node name="ShapeCast3D" type="ShapeCast3D" parent="Neck/Camera3D" unique_id=669558198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+shape = SubResource("SphereShape3D_qek5x")
 collision_mask = 8
+collide_with_areas = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Neck/Camera3D/MeshInstance3D/Area3D" unique_id=1985327408]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.450876, 0, -0.89377886)
-shape = SubResource("SphereShape3D_75vfm")
-disabled = true
+[node name="axe_wood" type="Node3D" parent="Neck/Camera3D" unique_id=252957842]
+transform = Transform3D(-2.032456e-08, 0.18385129, 0.46497172, 8.036395e-09, 0.46497172, -0.18385129, -0.5, 0, -2.1855694e-08, 0.2520252, -0.68884754, -0.7992809)
+
+[node name="Cylinder" type="MeshInstance3D" parent="Neck/Camera3D/axe_wood" unique_id=275488298]
+mesh = ExtResource("2_5gtgg")
 
 [node name="StateMachine" type="Node" parent="." unique_id=246789178 node_paths=PackedStringArray("initial_node_state")]
 script = ExtResource("2_dovo2")
@@ -152,6 +94,9 @@ player = NodePath("../..")
 script = ExtResource("7_0owmy")
 player = NodePath("../..")
 
+[node name="Stamina" type="Timer" parent="StateMachine/Sprint" unique_id=557888012]
+wait_time = 0.5
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1277091349]
 libraries/ = SubResource("AnimationLibrary_gmlin")
 
@@ -161,4 +106,5 @@ offset_bottom = 23.0
 
 [node name="Inventory" parent="." unique_id=1129337402 instance=ExtResource("8_qek5x")]
 
-[connection signal="area_entered" from="Neck/Camera3D/MeshInstance3D/Area3D" to="StateMachine/Chopping" method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="StateMachine/Sprint/Stamina" to="StateMachine/Sprint" method="_on_stamina_timeout"]
+[connection signal="slot_change" from="Inventory" to="." method="_on_inventory_slot_change"]

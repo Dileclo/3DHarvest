@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bbhlbahr840r6" path="res://assets/axe.glb" id="1_8op61"]
 [ext_resource type="PackedScene" uid="uid://ggs4ud1k5x1d" path="res://scenes/components/collectable_component.tscn" id="2_2l4tk"]
-[ext_resource type="Resource" uid="uid://db1s0ok4x5twq" path="res://scenes/inventory/items/axe_wood.tres" id="3_31ev0"]
+[ext_resource type="Resource" uid="uid://db1s0ok4x5twq" path="res://scenes/inventory/items/axe_wood/axe_wood.tres" id="3_31ev0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_06wul"]
 size = Vector3(0.41796875, 2.3413086, 0.33984375)

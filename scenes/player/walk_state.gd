@@ -21,7 +21,7 @@ func _on_next_transitions() -> void:
 		transition.emit("Idle")
 	if Input.is_action_just_pressed("ui_accept") and player.is_on_floor():
 		transition.emit("Jump")
-	if player.velocity != Vector3.ZERO and Input.is_action_pressed("sprint"):
+	if player.velocity != Vector3.ZERO and Input.is_action_pressed("sprint") and player.current_stamina>0:
 		transition.emit("Sprint")
 
 

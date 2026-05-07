@@ -3,8 +3,8 @@ extends NodeState
 
 @export var player:Player
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
-@onready var collision_shape_3d: CollisionShape3D = $"../../Neck/Camera3D/MeshInstance3D/Area3D/CollisionShape3D"
 @onready var neck: Node3D = $"../../Neck"
+@onready var shape_cast_3d: ShapeCast3D = $"../../Neck/Camera3D/ShapeCast3D"
 
 
 func _on_process(_delta : float) -> void:
@@ -21,14 +21,24 @@ func _on_next_transitions() -> void:
 
 
 func _on_enter() -> void:
-	collision_shape_3d.disabled = false
+	player.current_stamina-=5
+	shape_cast_3d.enabled = true
 	animation_player.play("Chop")
 
 
 func _on_exit() -> void:
-	collision_shape_3d.disabled = true
-
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	if area is HurtComponent:
-		var damage_to_deal = DataTools.get_damage(player.current_tool)
-		area.take_damage(damage_to_deal)
+	shape_cast_3d.enabled = false
+#
+func hit() -> void:
+	shape_cast_3d.force_shapecast_update()
+	if shape_cast_3d.is_colliding():
+		for i in shape_cast_3d.get_collision_count():
+			var collider = shape_cast_3d.get_collider(i)
+			# Извлекаем тип инструмента для урона
+			var tool_type = DataTools.Tools.None
+			if player.current_tool:
+				tool_type = player.current_tool
+			var damage_to_deal = DataTools.get_damage(tool_type)
+			if collider is HurtComponent:
+				collider.take_damage(damage_to_deal)
+				

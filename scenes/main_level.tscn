@@ -4,7 +4,7 @@
 [ext_resource type="MeshLibrary" uid="uid://chh0x0ijbh2if" path="res://assets/meshlib.meshlib" id="2_ufxs0"]
 [ext_resource type="PackedScene" uid="uid://cp7l4gps56ht2" path="res://scenes/Objects/tree_1.tscn" id="3_6we3w"]
 [ext_resource type="PackedScene" uid="uid://cu4nkeco3e8fh" path="res://scenes/Objects/stone.tscn" id="4_qmak7"]
-[ext_resource type="PackedScene" uid="uid://d16gvja3jxd42" path="res://scenes/inventory/items/axe_wood.tscn" id="5_8ra5a"]
+[ext_resource type="PackedScene" uid="uid://d16gvja3jxd42" path="res://scenes/inventory/items/axe_wood/axe_wood_collectable.tscn" id="5_8ra5a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v3uhd"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -29,7 +29,9 @@ size = Vector2(500, 500)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ynsf8"]
 data = PackedVector3Array(250, 0, 250, -250, 0, 250, 250, 0, -250, -250, 0, 250, -250, 0, -250, 250, 0, -250)
 
-[sub_resource type="BoxMesh" id="BoxMesh_v3uhd"]
+[sub_resource type="BoxMesh" id="BoxMesh_8ra5a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bq26l"]
 
 [node name="MainLevel" type="Node3D" unique_id=1840301593]
 
@@ -54,9 +56,14 @@ mesh = SubResource("PlaneMesh_v3uhd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Env/StaticBody3D" unique_id=1704337359]
 shape = SubResource("ConcavePolygonShape3D_ynsf8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Env" unique_id=1671642376]
+[node name="MeshInstance3D" type="RigidBody3D" parent="Env" unique_id=151211645]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6730516, -10.145834)
-mesh = SubResource("BoxMesh_v3uhd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Env/MeshInstance3D" unique_id=1392449263]
+mesh = SubResource("BoxMesh_8ra5a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Env/MeshInstance3D" unique_id=2017083014]
+shape = SubResource("BoxShape3D_bq26l")
 
 [node name="GridMap" type="GridMap" parent="." unique_id=1325995620]
 mesh_library = ExtResource("2_ufxs0")

@@ -1,27 +1,32 @@
 class_name Player
 extends CharacterBody3D
 
-
+@export var inv:Inventory
 @export var SPEED:float  = 5.0
 @export var JUMP_VELOCITY:float = 4.5
 @export var SPRINT_SPEED:float = 10
 @export var current_tool:DataTools.Tools
 @onready var neck: Node3D = $Neck
 @onready var camera_3d: Camera3D = $Neck/Camera3D
+@onready var shape_cast_3d: ShapeCast3D = $Neck/Camera3D/ShapeCast3D
+@export var MAX_STAMINA:float = 100
 
-
-var currently_equipped :ItemData = null
+var currently_equipped = null
 
 var current_speed
+var current_stamina
 
 var MouseSensitivity: float = 0.1
 
 func _ready() -> void:
+	current_stamina = MAX_STAMINA
+	shape_cast_3d.enabled = false
 	current_speed = SPEED
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	print(current_stamina)
 
 func handle_camera_rotation(event: InputEvent):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
@@ -44,3 +49,16 @@ func handle_movement(delta: float, speed: float):
 	
 	move_and_slide()	
 		
+
+func _on_inventory_slot_change() -> void:
+	# Получаем предмет из инвентаря
+	var raw_item = inv.get_active_item_data() 
+	# Пытаемся привести его к вашему классу ItemData
+	if raw_item is ItemData:
+		currently_equipped = raw_item 
+		current_tool = currently_equipped.tool 
+		
+	else:
+		# Если в слоте пусто или это другой тип ресурса
+		currently_equipped = null
+		current_tool = DataTools.Tools.None

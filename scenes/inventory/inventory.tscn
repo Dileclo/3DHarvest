@@ -66,7 +66,7 @@ layout_mode = 2
 [node name="Slot12" parent="UI/GridContainer" unique_id=587490137 groups=["inventory_slots"] instance=ExtResource("1_msrby")]
 layout_mode = 2
 
-[node name="Hotbar" type="HBoxContainer" parent="UI" unique_id=1319096594]
+[node name="Hotbar" type="HBoxContainer" parent="UI" unique_id=1319096594 node_paths=PackedStringArray("inv")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -78,6 +78,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("3_el5y6")
+inv = NodePath("../..")
 
 [node name="Slot" parent="UI/Hotbar" unique_id=861399374 groups=["hotbar_slots"] instance=ExtResource("1_msrby")]
 layout_mode = 2
@@ -90,3 +91,5 @@ layout_mode = 2
 
 [node name="Slot4" parent="UI/Hotbar" unique_id=124103862 groups=["hotbar_slots"] instance=ExtResource("1_msrby")]
 layout_mode = 2
+
+[connection signal="slot_change" from="UI/Hotbar" to="." method="_on_hotbar_slot_change"]
