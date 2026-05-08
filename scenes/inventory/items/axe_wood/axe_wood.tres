@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://db1s0ok4x5twq"]
 
 [ext_resource type="Script" uid="uid://blqryxr2mhksn" path="res://scenes/resources/ItemData.gd" id="1_oxfyp"]
-[ext_resource type="Texture2D" uid="uid://knnrptfhfff4" path="res://icon.svg" id="1_vf70c"]
+[ext_resource type="Texture2D" uid="uid://dqsphgeftasld" path="res://scenes/inventory/items/axe_wood/axe.png" id="1_wuupy"]
 [ext_resource type="ArrayMesh" uid="uid://lncmnix7ycrf" path="res://scenes/weapons/axe_wood.mesh" id="2_wuupy"]
 
 [resource]
 script = ExtResource("1_oxfyp")
 name = "Деревянный топор"
-icon = ExtResource("1_vf70c")
+icon = ExtResource("1_wuupy")
 tool = 1
 mesh = ExtResource("2_wuupy")
 position = Vector3(0.69, -0.885, -0.69)

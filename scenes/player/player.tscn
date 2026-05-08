@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://d4nyloq3amk8u" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cxcjaqmfov0r0" path="res://scenes/player/state_machine.gd" id="2_dovo2"]
 [ext_resource type="Script" uid="uid://bjn16i6ka7r1x" path="res://scenes/player/weapon.gd" id="2_h17s1"]
+[ext_resource type="Resource" uid="uid://bn48nvwxnhxs2" path="res://scenes/inventory/items/pickaxe_wood/pickaxe_wood.tres" id="3_je7p5"]
 [ext_resource type="Script" uid="uid://c7cgh70w1y8i8" path="res://scenes/player/idle_state.gd" id="3_lvxji"]
+[ext_resource type="ArrayMesh" uid="uid://840yvun5bf7l" path="res://scenes/inventory/items/pickaxe_wood/pickaxe_wood.mesh" id="4_fm80t"]
 [ext_resource type="Script" uid="uid://dl52ebr0vtapo" path="res://scenes/player/walk_state.gd" id="4_p47bc"]
 [ext_resource type="Script" uid="uid://3asf45claeaf" path="res://scenes/player/chopping.gd" id="5_p47bc"]
 [ext_resource type="Script" uid="uid://dcu27wa3u60e7" path="res://scenes/player/jump.gd" id="6_75vfm"]
@@ -32,14 +34,79 @@ tracks/0/keys = {
 "method": &"hit"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D/Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.69, -0.885, -0.69)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D/Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.17, 0.36666667),
+"transitions": PackedFloat32Array(1, 5.8563437, 1),
+"update": 0,
+"values": [Vector3(0, 2, 0), Vector3(0, 2.0001473, -1.0471976), Vector3(0, 2.0001473, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.69, -0.885, -0.69)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D/Weapon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_je7p5"]
+resource_name = "pickup"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.0001473, -1.5707964), Vector3(0, 2.0001473, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
 _data = {
 &"Chop": SubResource("Animation_8afob"),
-&"RESET": SubResource("Animation_dovo2")
+&"RESET": SubResource("Animation_dovo2"),
+&"pickup": SubResource("Animation_je7p5")
 }
 
 [node name="Player" type="CharacterBody3D" unique_id=908429481 node_paths=PackedStringArray("inv")]
@@ -64,11 +131,13 @@ collision_mask = 8
 collide_with_areas = true
 
 [node name="Weapon" type="Marker3D" parent="Neck/Camera3D" unique_id=1741729093]
-transform = Transform3D(1, 0, 0, 0, -0.44807363, -0.89399666, 0, 0.89399666, -0.44807363, 0, 0, -2.741116)
+transform = Transform3D(-0.041614685, 0, 0.09092974, 0, 0.1, 0, -0.09092974, 0, -0.041614685, 0.69, -0.885, -0.69)
 script = ExtResource("2_h17s1")
+item = ExtResource("3_je7p5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Neck/Camera3D/Weapon" unique_id=424492200]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6518583, -0.5328309)
+mesh = ExtResource("4_fm80t")
 
 [node name="StateMachine" type="Node" parent="." unique_id=246789178 node_paths=PackedStringArray("initial_node_state")]
 script = ExtResource("2_dovo2")

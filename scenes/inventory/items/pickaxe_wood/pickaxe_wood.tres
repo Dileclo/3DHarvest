@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bn48nvwxnhxs2"]
+
+[ext_resource type="Script" uid="uid://blqryxr2mhksn" path="res://scenes/resources/ItemData.gd" id="1_81i3x"]
+[ext_resource type="Texture2D" uid="uid://7565xad6mhut" path="res://scenes/inventory/items/pickaxe_wood/pickaxe.png" id="1_qhaao"]
+[ext_resource type="ArrayMesh" uid="uid://840yvun5bf7l" path="res://scenes/inventory/items/pickaxe_wood/pickaxe_wood.mesh" id="2_daq5r"]
+
+[resource]
+script = ExtResource("1_81i3x")
+name = "Деревянная кирка"
+icon = ExtResource("1_qhaao")
+tool = 3
+mesh = ExtResource("2_daq5r")
+position = Vector3(0.37, -0.25, -0.68)
+scale = Vector3(0.1, 0.1, 0.1)
+metadata/_custom_type_script = "uid://blqryxr2mhksn"

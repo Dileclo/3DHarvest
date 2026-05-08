@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8pu0c8i1kist"]
 
 [ext_resource type="PackedScene" uid="uid://q62wfsuhj7rp" path="res://scenes/player/player.tscn" id="1_v3uhd"]
+[ext_resource type="PackedScene" uid="uid://g1ut2ykteifs" path="res://scenes/inventory/items/pickaxe_wood/pickaxe_wood_collectable.tscn" id="2_bq26l"]
 [ext_resource type="MeshLibrary" uid="uid://chh0x0ijbh2if" path="res://assets/meshlib.meshlib" id="2_ufxs0"]
 [ext_resource type="PackedScene" uid="uid://cp7l4gps56ht2" path="res://scenes/Objects/tree_1.tscn" id="3_6we3w"]
 [ext_resource type="PackedScene" uid="uid://cu4nkeco3e8fh" path="res://scenes/Objects/stone.tscn" id="4_qmak7"]
@@ -87,3 +88,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2569408, -0.4172967, -7.826
 
 [node name="StaticBody3D2" parent="." unique_id=355867658 instance=ExtResource("5_8ra5a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.789038)
+
+[node name="PickaxeWoodCollectable" parent="." unique_id=2084064013 instance=ExtResource("2_bq26l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5319338, -0.06756163, -3.9313564)

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://g1ut2ykteifs"]
+
+[ext_resource type="PackedScene" uid="uid://ggs4ud1k5x1d" path="res://scenes/components/collectable_component.tscn" id="1_w3dva"]
+[ext_resource type="Resource" uid="uid://bn48nvwxnhxs2" path="res://scenes/inventory/items/pickaxe_wood/pickaxe_wood.tres" id="2_rk8pf"]
+[ext_resource type="ArrayMesh" uid="uid://840yvun5bf7l" path="res://scenes/inventory/items/pickaxe_wood/pickaxe_wood.mesh" id="3_pigha"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_foayb"]
+size = Vector3(0.51568604, 0.9937134, 0.7537842)
+
+[node name="PickaxeWoodCollectable" type="Node3D" unique_id=2084064013]
+
+[node name="CollectableComponent" parent="." unique_id=2086327072 instance=ExtResource("1_w3dva")]
+item = ExtResource("2_rk8pf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectableComponent" unique_id=303678185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054779053, 0.51205444, -0.12310791)
+shape = SubResource("BoxShape3D_foayb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1650228103]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("3_pigha")

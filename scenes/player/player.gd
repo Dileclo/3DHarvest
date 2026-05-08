@@ -13,6 +13,7 @@ extends CharacterBody3D
 @export var MAX_STAMINA:float = 100
 @onready var weapon: Marker3D = $Neck/Camera3D/Weapon
 @onready var mesh_instance_3d: MeshInstance3D = $Neck/Camera3D/Weapon/MeshInstance3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var currently_equipped = null
 
@@ -60,6 +61,7 @@ func _on_inventory_slot_change() -> void:
 		currently_equipped = raw_item 
 		current_tool = currently_equipped.tool 
 		weapon.item = raw_item
+		animation_player.play("pickup")
 	else:
 		# Если в слоте пусто или это другой тип ресурса
 		currently_equipped = null
