@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://d4nyloq3amk8u" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cxcjaqmfov0r0" path="res://scenes/player/state_machine.gd" id="2_dovo2"]
 [ext_resource type="Script" uid="uid://bjn16i6ka7r1x" path="res://scenes/player/weapon.gd" id="2_h17s1"]
-[ext_resource type="Resource" uid="uid://db1s0ok4x5twq" path="res://scenes/inventory/items/axe_wood/axe_wood.tres" id="3_je7p5"]
 [ext_resource type="Script" uid="uid://c7cgh70w1y8i8" path="res://scenes/player/idle_state.gd" id="3_lvxji"]
 [ext_resource type="Script" uid="uid://dl52ebr0vtapo" path="res://scenes/player/walk_state.gd" id="4_p47bc"]
 [ext_resource type="Script" uid="uid://3asf45claeaf" path="res://scenes/player/chopping.gd" id="5_p47bc"]
@@ -65,11 +64,11 @@ collision_mask = 8
 collide_with_areas = true
 
 [node name="Weapon" type="Marker3D" parent="Neck/Camera3D" unique_id=1741729093]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.1776334, -0.8678132, -1.1477795)
+transform = Transform3D(1, 0, 0, 0, -0.44807363, -0.89399666, 0, 0.89399666, -0.44807363, 0, 0, -2.741116)
 script = ExtResource("2_h17s1")
-item = ExtResource("3_je7p5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Neck/Camera3D/Weapon" unique_id=424492200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6518583, -0.5328309)
 
 [node name="StateMachine" type="Node" parent="." unique_id=246789178 node_paths=PackedStringArray("initial_node_state")]
 script = ExtResource("2_dovo2")

@@ -1,4 +1,3 @@
-@tool
 
 class_name Player
 extends CharacterBody3D
@@ -12,6 +11,8 @@ extends CharacterBody3D
 @onready var camera_3d: Camera3D = $Neck/Camera3D
 @onready var shape_cast_3d: ShapeCast3D = $Neck/Camera3D/ShapeCast3D
 @export var MAX_STAMINA:float = 100
+@onready var weapon: Marker3D = $Neck/Camera3D/Weapon
+@onready var mesh_instance_3d: MeshInstance3D = $Neck/Camera3D/Weapon/MeshInstance3D
 
 var currently_equipped = null
 
@@ -28,7 +29,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	print(current_stamina)
 
 func handle_camera_rotation(event: InputEvent):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
@@ -59,8 +59,10 @@ func _on_inventory_slot_change() -> void:
 	if raw_item is ItemData:
 		currently_equipped = raw_item 
 		current_tool = currently_equipped.tool 
-		
+		weapon.item = raw_item
 	else:
 		# Если в слоте пусто или это другой тип ресурса
 		currently_equipped = null
 		current_tool = DataTools.Tools.None
+		weapon.item = null
+		mesh_instance_3d.mesh = null
