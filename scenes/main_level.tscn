@@ -48,7 +48,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Env" unique_id=1673230004]
 environment = SubResource("Environment_6we3w")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Env" unique_id=191305026]
+[node name="StaticBody3D" type="StaticBody3D" parent="Env" unique_id=191305026 groups=["Ground"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.46878493, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Env/StaticBody3D" unique_id=1895160688]
@@ -71,18 +71,6 @@ mesh_library = ExtResource("2_ufxs0")
 cell_size = Vector3(1, 1, 1)
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
-[node name="Tree1" parent="." unique_id=1969911728 instance=ExtResource("3_6we3w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6347613, -0.49076912, -13.816786)
-
-[node name="Tree2" parent="." unique_id=1428770266 instance=ExtResource("3_6we3w")]
-transform = Transform3D(0.33668444, 0, 0.94161755, 0, 1, 0, -0.94161755, 0, 0.33668444, -6.169929, -0.49076912, -13.816786)
-
-[node name="Tree3" parent="." unique_id=1444220519 instance=ExtResource("3_6we3w")]
-transform = Transform3D(0.33668444, 0, 0.94161755, 0, 1, 0, -0.94161755, 0, 0.33668444, -4.4097104, -0.49076912, -15.704172)
-
-[node name="Tree4" parent="." unique_id=17460610 instance=ExtResource("3_6we3w")]
-transform = Transform3D(0.33668444, 0, 0.94161755, 0, 1, 0, -0.94161755, 0, 0.33668444, -2.2919335, -0.49076912, -16.31572)
-
 [node name="StaticBody3D" parent="." unique_id=2004530571 instance=ExtResource("4_qmak7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2569408, -0.4172967, -7.826372)
 
@@ -91,3 +79,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.789038)
 
 [node name="PickaxeWoodCollectable" parent="." unique_id=2084064013 instance=ExtResource("2_bq26l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5319338, -0.06756163, -3.9313564)
+
+[node name="Trees" type="Node" parent="." unique_id=2018252330]
+
+[node name="Tree1" parent="Trees" unique_id=1969911728 instance=ExtResource("3_6we3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6347613, -0.49076912, -13.816786)
+
+[node name="Tree2" parent="Trees" unique_id=1428770266 instance=ExtResource("3_6we3w")]
+transform = Transform3D(0.33668444, 0, 0.94161755, 0, 1, 0, -0.94161755, 0, 0.33668444, -6.169929, -0.49076912, -13.816786)
+
+[node name="Tree3" parent="Trees" unique_id=1444220519 instance=ExtResource("3_6we3w")]
+transform = Transform3D(0.33668444, 0, 0.94161755, 0, 1, 0, -0.94161755, 0, 0.33668444, -4.4097104, -0.49076912, -15.704172)
+
+[node name="Tree4" parent="Trees" unique_id=17460610 instance=ExtResource("3_6we3w")]
+transform = Transform3D(0.33668444, 0, 0.94161755, 0, 1, 0, -0.94161755, 0, 0.33668444, -2.2919335, -0.49076912, -16.31572)
+
+[node name="Tree5" parent="Trees" unique_id=1308869257 instance=ExtResource("3_6we3w")]
+transform = Transform3D(0.39208028, 0, 0.919931, 0, 1, 0, -0.919931, 0, 0.39208028, -9.338004, -0.49076912, -15.62581)
+
+[node name="Tree6" parent="Trees" unique_id=164065455 instance=ExtResource("3_6we3w")]
+transform = Transform3D(-0.73421586, 0, 0.6789161, 0, 1, 0, -0.6789161, 0, -0.73421586, -10.724073, -0.49076912, -12.373699)
+
+[node name="Tree7" parent="Trees" unique_id=116461299 instance=ExtResource("3_6we3w")]
+transform = Transform3D(-0.73421586, 0, 0.6789161, 0, 1, 0, -0.6789161, 0, -0.73421586, -11.770191, -0.49076912, -14.7329855)
+
+[node name="Tree8" parent="Trees" unique_id=1530838171 instance=ExtResource("3_6we3w")]
+transform = Transform3D(-0.73421586, 0, 0.6789161, 0, 1, 0, -0.6789161, 0, -0.73421586, -11.502435, -0.49076912, -16.92097)
+
+[node name="Tree9" parent="Trees" unique_id=1722793145 instance=ExtResource("3_6we3w")]
+transform = Transform3D(0.54084235, 0, 0.841124, 0, 1, 0, -0.841124, 0, 0.54084235, -18.304724, -0.49076912, -18.290705)

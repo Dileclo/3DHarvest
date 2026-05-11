@@ -5,6 +5,8 @@ extends NodeState
 @onready var stamina: Timer = $Stamina
 
 func _on_physics_process(delta: float) -> void:
+	player.can_regenerate_stamina = false
+
 	player.handle_movement(delta,player.current_speed)
 	
 func _on_next_transitions() -> void:

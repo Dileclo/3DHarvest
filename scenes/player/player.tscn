@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://d4nyloq3amk8u" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cxcjaqmfov0r0" path="res://scenes/player/state_machine.gd" id="2_dovo2"]
 [ext_resource type="Script" uid="uid://bjn16i6ka7r1x" path="res://scenes/player/weapon.gd" id="2_h17s1"]
-[ext_resource type="Resource" uid="uid://bn48nvwxnhxs2" path="res://scenes/inventory/items/pickaxe_wood/pickaxe_wood.tres" id="3_je7p5"]
+[ext_resource type="Script" uid="uid://dbqsyhxgncph" path="res://scenes/player/camera_3d.gd" id="2_je7p5"]
 [ext_resource type="Script" uid="uid://c7cgh70w1y8i8" path="res://scenes/player/idle_state.gd" id="3_lvxji"]
-[ext_resource type="ArrayMesh" uid="uid://840yvun5bf7l" path="res://scenes/inventory/items/pickaxe_wood/pickaxe_wood.mesh" id="4_fm80t"]
 [ext_resource type="Script" uid="uid://dl52ebr0vtapo" path="res://scenes/player/walk_state.gd" id="4_p47bc"]
 [ext_resource type="Script" uid="uid://3asf45claeaf" path="res://scenes/player/chopping.gd" id="5_p47bc"]
 [ext_resource type="Script" uid="uid://dcu27wa3u60e7" path="res://scenes/player/jump.gd" id="6_75vfm"]
@@ -109,12 +108,35 @@ _data = {
 &"pickup": SubResource("Animation_je7p5")
 }
 
-[node name="Player" type="CharacterBody3D" unique_id=908429481 node_paths=PackedStringArray("inv")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h17s1"]
+bg_color = Color(0.9949756, 0.86117053, 0.8790677, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_je7p5"]
+bg_color = Color(0.6978545, 0.05784277, 0.15910283, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fm80t"]
+bg_color = Color(0.92535293, 0.9253528, 0.9253529, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+anti_aliasing_size = 3.116
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx1jg"]
+bg_color = Color(5.0055983e-06, 0.6560865, 0.86443895, 1)
+
+[node name="Player" type="CharacterBody3D" unique_id=908429481 node_paths=PackedStringArray("inv") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 3
 script = ExtResource("1_8afob")
 inv = NodePath("Inventory")
-MAX_STAMINA = 150.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2022746130]
 shape = SubResource("CapsuleShape3D_x7p2l")
@@ -123,6 +145,7 @@ shape = SubResource("CapsuleShape3D_x7p2l")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7526938, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Neck" unique_id=1474157221]
+script = ExtResource("2_je7p5")
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="Neck/Camera3D" unique_id=669558198]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
@@ -133,11 +156,9 @@ collide_with_areas = true
 [node name="Weapon" type="Marker3D" parent="Neck/Camera3D" unique_id=1741729093]
 transform = Transform3D(-0.041614685, 0, 0.09092974, 0, 0.1, 0, -0.09092974, 0, -0.041614685, 0.69, -0.885, -0.69)
 script = ExtResource("2_h17s1")
-item = ExtResource("3_je7p5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Neck/Camera3D/Weapon" unique_id=424492200]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6518583, -0.5328309)
-mesh = ExtResource("4_fm80t")
 
 [node name="StateMachine" type="Node" parent="." unique_id=246789178 node_paths=PackedStringArray("initial_node_state")]
 script = ExtResource("2_dovo2")
@@ -175,5 +196,44 @@ offset_bottom = 23.0
 
 [node name="Inventory" parent="." unique_id=1129337402 instance=ExtResource("8_qek5x")]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1618040821]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1163580409]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -65.0
+offset_right = 150.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=1612127470]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HP_Bar" type="ProgressBar" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1836864980]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_h17s1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_je7p5")
+value = 50.0
+show_percentage = false
+
+[node name="ST_Bar" type="ProgressBar" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=380389922]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.7666196, 0.76661956, 0.76661956, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_fm80t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gx1jg")
+value = 50.0
+show_percentage = false
+
+[node name="Stamina_Regeneration" type="Timer" parent="." unique_id=1732207118]
+autostart = true
+
 [connection signal="timeout" from="StateMachine/Sprint/Stamina" to="StateMachine/Sprint" method="_on_stamina_timeout"]
 [connection signal="slot_change" from="Inventory" to="." method="_on_inventory_slot_change"]
+[connection signal="timeout" from="Stamina_Regeneration" to="." method="_on_stamina_regeneration_timeout"]

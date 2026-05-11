@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://drjl3mflydvqp"]
 
 [ext_resource type="PackedScene" uid="uid://ggs4ud1k5x1d" path="res://scenes/components/collectable_component.tscn" id="1_bck0a"]
-[ext_resource type="Resource" uid="uid://c6sw4iuoxnl8h" path="res://scenes/inventory/items/log.tres" id="2_k1lug"]
+[ext_resource type="Resource" uid="uid://c6sw4iuoxnl8h" path="res://scenes/inventory/items/log/log.tres" id="2_k1lug"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_8i11u"]
 

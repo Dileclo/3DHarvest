@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cu4nkeco3e8fh"]
 
 [ext_resource type="Texture2D" uid="uid://gtwbq8bvxi50" path="res://assets/glTF/PathRocks_Diffuse.png" id="1_cavch"]
-[ext_resource type="Script" uid="uid://chgenbfk7lajm" path="res://health_component.gd" id="2_7wde5"]
+[ext_resource type="Script" uid="uid://chgenbfk7lajm" path="res://scenes/components/health_component.gd" id="2_7wde5"]
 [ext_resource type="PackedScene" uid="uid://qskgfn1q50rn" path="res://scenes/components/spawner_component.tscn" id="3_yndsy"]
 [ext_resource type="PackedScene" uid="uid://c2aqty72d2lri" path="res://scenes/components/hurt_component.tscn" id="4_mbhiq"]
 [ext_resource type="PackedScene" uid="uid://bpgsgq8ftqprj" path="res://scenes/Objects/peddle.tscn" id="4_yndsy"]

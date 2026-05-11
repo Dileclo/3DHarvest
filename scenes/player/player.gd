@@ -7,26 +7,48 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY:float = 4.5
 @export var SPRINT_SPEED:float = 10
 @export var current_tool:DataTools.Tools
+@export var MAX_STAMINA:float = 100
+@export var MAX_HEALTH:float = 100
 @onready var neck: Node3D = $Neck
 @onready var camera_3d: Camera3D = $Neck/Camera3D
 @onready var shape_cast_3d: ShapeCast3D = $Neck/Camera3D/ShapeCast3D
-@export var MAX_STAMINA:float = 100
 @onready var weapon: Marker3D = $Neck/Camera3D/Weapon
 @onready var mesh_instance_3d: MeshInstance3D = $Neck/Camera3D/Weapon/MeshInstance3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var hp_bar: ProgressBar = $CanvasLayer/MarginContainer/HBoxContainer/HP_Bar
+@onready var st_bar: ProgressBar = $CanvasLayer/MarginContainer/HBoxContainer/ST_Bar
+
 
 var currently_equipped = null
 
 var current_speed
-var current_stamina
+var current_stamina: float:
+	set(value):
+		current_stamina = clamp(value, 0, MAX_STAMINA)
+		if st_bar: st_bar.value = current_stamina
+var current_health
+var can_regenerate_stamina
 
 var MouseSensitivity: float = 0.1
 
 func _ready() -> void:
+	initialisation()
+	
+
+func initialisation():
+	#Health
+	current_health = MAX_HEALTH
+	hp_bar.max_value = MAX_HEALTH
+	hp_bar.value = current_health
+	#Stamina
+	can_regenerate_stamina = true
 	current_stamina = MAX_STAMINA
+	st_bar.value = current_stamina
+	st_bar.max_value = MAX_STAMINA
 	shape_cast_3d.enabled = false
 	current_speed = SPEED
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -68,3 +90,8 @@ func _on_inventory_slot_change() -> void:
 		current_tool = DataTools.Tools.None
 		weapon.item = null
 		mesh_instance_3d.mesh = null
+
+
+func _on_stamina_regeneration_timeout() -> void:
+	if can_regenerate_stamina and current_stamina < MAX_STAMINA:
+		current_stamina = min(current_stamina + 1, MAX_STAMINA)

@@ -21,6 +21,8 @@ func _on_next_transitions() -> void:
 
 
 func _on_enter() -> void:
+	player.can_regenerate_stamina = false
+
 	player.current_stamina-=5
 	shape_cast_3d.enabled = true
 	animation_player.play("Chop")
@@ -41,4 +43,6 @@ func hit() -> void:
 			var damage_to_deal = DataTools.get_damage(tool_type)
 			if collider is HurtComponent:
 				collider.take_damage(damage_to_deal)
+				player.camera_3d.add_trauma(0.15)
+				player.camera_3d.shake()
 				

@@ -15,10 +15,12 @@ func display(new_item: ItemData, new_amount: int):
 		icon.texture = item.icon
 		icon.show()
 		amount_label.text = str(amount) if amount > 1 else ""
+		tooltip_text = str(item.name)
 	else:
 		icon.texture = null
 		icon.hide()
 		amount_label.text = ""
+		
 
 func _get_drag_data(_at_position: Vector2):
 	if not item: return null

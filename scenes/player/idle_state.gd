@@ -29,7 +29,7 @@ func _on_next_transitions() -> void:
 	
 
 func _on_enter() -> void:
-	pass
+	player.can_regenerate_stamina = true
 
 
 func _on_exit() -> void:
